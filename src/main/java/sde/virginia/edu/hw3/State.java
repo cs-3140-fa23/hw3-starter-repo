@@ -2,24 +2,22 @@
  * Copyright statement at the bottom of the code.
  */
 
-package sde.virginia.edu.hw1;
-
-import java.util.List;
+package sde.virginia.edu.hw3;
 
 /**
- * A StateSupplier provides a {@link List} of {@link State states} from some data source, such as a file.
+ * Represents a US State, specifically it's {@link State#name () name} and {@link State#population () population}.
+ * <b>This class is immutable.</b>
  *
+ * @param name       - the name of the State
+ * @param population - the states population
  * @author Will-McBurney
  */
-public interface StateSupplier {
-    /**
-     * Returns a list of states retrieved from some data source
-     *
-     * @return a {@link List list} of {@link State} objects
-     * @see CSVStateReader#getStates()
-     * @see SpreadsheetStateReader#getStates()
-     */
-    List<State> getStates();
+public record State(String name, int population) {
+
+    @Override
+    public String toString() {
+        return "sde.virginia.edu.hw1.State{" + "name='" + name + '\'' + ", population=" + population + '}';
+    }
 }
 
 /*

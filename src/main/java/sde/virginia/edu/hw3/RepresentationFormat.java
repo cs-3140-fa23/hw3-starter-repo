@@ -2,41 +2,21 @@
  * Copyright statement at the bottom of the code.
  */
 
-package sde.virginia.edu.hw1;
-
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+package sde.virginia.edu.hw3;
 
 /**
- * Test class for AdamsMethod
+ * A RepresentationFormat describes a way to display a {@link Representation} object as a {@link String}.
  *
  * @author Will-McBurney
  */
-class AdamsMethodTest {
-
-    @Test
-    void getRepresentation() {
-        var de = new State("Delaware", 989948);
-        var md = new State("Maryland", 6177224);
-        var pa = new State("Pennsylvania", 13002700);
-        var va = new State("Virginia", 8631393);
-        var wv = new State("West Virginia", 1793716);
-
-        var states = List.of(de, md, pa, va, wv);
-
-        var adamsMethod = new AdamsMethod();
-        var representation = adamsMethod.getRepresentation(states, 25);
-
-        assertEquals(5, representation.getStates().size());
-        assertEquals(1, representation.getRepresentativesFor(de));
-        assertEquals(5, representation.getRepresentativesFor(md));
-        assertEquals(10, representation.getRepresentativesFor(pa));
-        assertEquals(7, representation.getRepresentativesFor(va));
-        assertEquals(2, representation.getRepresentativesFor(wv));
-    }
+public interface RepresentationFormat {
+    /**
+     * Generates a formatted {@link String} to display the results of an apportionment.
+     *
+     * @param representation the allocation of representatives to each US state
+     * @return a formatted {@link String} to display the results of an apportionment.
+     */
+    String getFormattedString(Representation representation);
 }
 
 /*

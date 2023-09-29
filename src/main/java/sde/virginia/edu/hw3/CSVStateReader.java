@@ -2,7 +2,7 @@
  * Copyright statement at the bottom of the code.
  */
 
-package sde.virginia.edu.hw1;
+package sde.virginia.edu.hw3;
 
 import java.io.BufferedReader;
 import java.io.File;

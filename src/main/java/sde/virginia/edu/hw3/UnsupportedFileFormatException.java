@@ -2,41 +2,29 @@
  * Copyright statement at the bottom of the code.
  */
 
-package sde.virginia.edu.hw1;
-
-import java.util.ArrayList;
-import java.util.Comparator;
+package sde.virginia.edu.hw3;
 
 /**
- * Displays the {@link State states} in a {@link Representation representation} by name, population, and allocated
- * representatives <b>in alphabetical order by state name</b>.
+ * Exception for an unsupported file type passed into <code>filename</code> in the command line arguments.
  *
  * @author Will-McBurney
  */
-public class AlphabeticalFormat implements RepresentationFormat {
+public class UnsupportedFileFormatException extends RuntimeException {
+
     /**
-     * Generates table-link {@link String} of a {@link Representation} where states are sorted in alphabetical order
-     * by name.
+     * Generates an exception for an unsupported file format. See {@link Arguments#getStateSupplier()} for supported
+     * file formats.
      *
-     * @param representation an apportionment of representatives to the states
-     * @return a markdown compatible table {@link String} for displaying a {@link Representation}
-     * @see Representation#getFormattedString(RepresentationFormat)
+     * @param unsupportedFilename the filename of the unsupported file.
      */
-    @Override
-    public String getFormattedString(Representation representation) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("State           |Population| Reps\n");
-        var states = new ArrayList<>(representation.getStates());
-        states.sort(Comparator.comparing(State::name, String.CASE_INSENSITIVE_ORDER));
-        for (State state : states) {
-            var stateString = String.format("%-16s|%10d|%5d\n",
-                    state.name(), state.population(), representation.getRepresentativesFor(state));
-            stringBuilder.append(stateString);
-        }
-        return stringBuilder.toString();
+    public UnsupportedFileFormatException(String unsupportedFilename) {
+        super(String.format("""
+                Filename: %s - This project currently only supports:
+                    .csv
+                    .xlsx
+                    .xls""", unsupportedFilename));
     }
 }
-
 
 /*
  * Copyright (c) 2023. Paul "Will" McBurney <br>

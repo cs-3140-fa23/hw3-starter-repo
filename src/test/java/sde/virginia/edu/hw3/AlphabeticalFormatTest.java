@@ -2,33 +2,34 @@
  * Copyright statement at the bottom of the code.
  */
 
-package sde.virginia.edu.hw1;
+package sde.virginia.edu.hw3;
 
+import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * This exception is thrown when a given apportionment is not solvable by a particular apportionment method for
- * a given list of states and a target number of representatives. This can be because of an unresolvable tie, for
- * example.
+ * Test class for AdamsMethod
  *
  * @author Will-McBurney
  */
-public class UnsolvableApportionmentException extends RuntimeException {
-    /**
-     * Throws an exception denoting an unsolvable apportionment situation.
-     *
-     * @param apportionmentMethod   the apportionment method used
-     * @param states                the list of states to be apportioned
-     * @param targetRepresentatives the total number of representatives to allocate to all states combined
-     */
-    public UnsolvableApportionmentException(ApportionmentMethod apportionmentMethod,
-                                            List<State> states, int targetRepresentatives) {
-        super(String.format("""
-                For the following inputs, a %s is impossible:
-                    target representatives: %d
-                    state list: %s
-                """, apportionmentMethod.getClass().getName(), targetRepresentatives, states));
+class AlphabeticalFormatTest {
+    @Test
+    void getFormattedString() {
+        var representation = new Representation(new HashMap<>(
+                Map.of(new State("Ohio", 10), 4,
+                        new State("Virginia", 15), 6)));
+
+        var format = new AlphabeticalFormat();
+        var expected = """
+                State           |Population| Reps
+                Ohio            |        10|    4
+                Virginia        |        15|    6
+                """;
+        assertEquals(expected, format.getFormattedString(representation));
     }
 }
 

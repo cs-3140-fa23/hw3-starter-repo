@@ -2,32 +2,36 @@
  * Copyright statement at the bottom of the code.
  */
 
-package sde.virginia.edu.hw1;
+package sde.virginia.edu.hw3;
+
+import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
- * This exception is thrown when a tabular input file (such as a {@link CSVStateReader csv}, {@link
- * SpreadsheetStateReader .xlsx, or .xls} is missing a required to generate {@link State objects}
+ * Displays the {@link State states} in a {@link Representation representation} by name, population, and allocated
+ * representatives <b>in alphabetical order by state name</b>.
  *
  * @author Will-McBurney
  */
-public class MissingStateColumnException extends RuntimeException {
+public class AlphabeticalFormat implements RepresentationFormat {
     /**
-     * Throws an exception to signal that at least one required column is missing from an input file.
+     * Generates table-link {@link String} of a {@link Representation} where states are sorted in alphabetical order
+     * by name.
      *
-     * @param filename             the name of the file with the missing heading(s)
-     * @param missingColumnHeaders the required heading(s) that is missing
-     * @see CSVStateReader
-     * @see SpreadsheetStateReader
+     * @param representation an apportionment of representatives to the states
+     * @return a markdown compatible table {@link String} for displaying a {@link Representation}
+     * @see Representation#getFormattedString(RepresentationFormat)
      */
-    public MissingStateColumnException(String filename, String... missingColumnHeaders) {
-        super(getErrorMessage(filename, missingColumnHeaders));
-    }
-
-    private static String getErrorMessage(String filename, String[] missingColumnHeaders) {
+    @Override
+    public String getFormattedString(Representation representation) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(String.format("Your file %s the following column names:\n", filename));
-        for (String missingColumn : missingColumnHeaders) {
-            stringBuilder.append(String.format("\t- %s", missingColumn));
+        stringBuilder.append("State           |Population| Reps\n");
+        var states = new ArrayList<>(representation.getStates());
+        states.sort(Comparator.comparing(State::name, String.CASE_INSENSITIVE_ORDER));
+        for (State state : states) {
+            var stateString = String.format("%-16s|%10d|%5d\n",
+                    state.name(), state.population(), representation.getRepresentativesFor(state));
+            stringBuilder.append(stateString);
         }
         return stringBuilder.toString();
     }

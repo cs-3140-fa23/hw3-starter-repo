@@ -2,23 +2,37 @@
  * Copyright statement at the bottom of the code.
  */
 
-package sde.virginia.edu.hw1;
+package sde.virginia.edu.hw3;
 
 /**
- * Represents a US State, specifically it's {@link State#name () name} and {@link State#population () population}.
- * <b>This class is immutable.</b>
+ * This exception is thrown when a tabular input file (such as a {@link CSVStateReader csv}, {@link
+ * SpreadsheetStateReader .xlsx, or .xls} is missing a required to generate {@link State objects}
  *
- * @param name       - the name of the State
- * @param population - the states population
  * @author Will-McBurney
  */
-public record State(String name, int population) {
+public class MissingStateColumnException extends RuntimeException {
+    /**
+     * Throws an exception to signal that at least one required column is missing from an input file.
+     *
+     * @param filename             the name of the file with the missing heading(s)
+     * @param missingColumnHeaders the required heading(s) that is missing
+     * @see CSVStateReader
+     * @see SpreadsheetStateReader
+     */
+    public MissingStateColumnException(String filename, String... missingColumnHeaders) {
+        super(getErrorMessage(filename, missingColumnHeaders));
+    }
 
-    @Override
-    public String toString() {
-        return "sde.virginia.edu.hw1.State{" + "name='" + name + '\'' + ", population=" + population + '}';
+    private static String getErrorMessage(String filename, String[] missingColumnHeaders) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(String.format("Your file %s the following column names:\n", filename));
+        for (String missingColumn : missingColumnHeaders) {
+            stringBuilder.append(String.format("\t- %s", missingColumn));
+        }
+        return stringBuilder.toString();
     }
 }
+
 
 /*
  * Copyright (c) 2023. Paul "Will" McBurney <br>

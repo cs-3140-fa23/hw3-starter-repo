@@ -2,12 +2,11 @@
  * Copyright statement at the bottom of the code.
  */
 
-package sde.virginia.edu.hw1;
+package sde.virginia.edu.hw3;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -16,20 +15,27 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  *
  * @author Will-McBurney
  */
-class AlphabeticalFormatTest {
-    @Test
-    void getFormattedString() {
-        var representation = new Representation(new HashMap<>(
-                Map.of(new State("Ohio", 10), 4,
-                        new State("Virginia", 15), 6)));
+class AdamsMethodTest {
 
-        var format = new AlphabeticalFormat();
-        var expected = """
-                State           |Population| Reps
-                Ohio            |        10|    4
-                Virginia        |        15|    6
-                """;
-        assertEquals(expected, format.getFormattedString(representation));
+    @Test
+    void getRepresentation() {
+        var de = new State("Delaware", 989948);
+        var md = new State("Maryland", 6177224);
+        var pa = new State("Pennsylvania", 13002700);
+        var va = new State("Virginia", 8631393);
+        var wv = new State("West Virginia", 1793716);
+
+        var states = List.of(de, md, pa, va, wv);
+
+        var adamsMethod = new AdamsMethod();
+        var representation = adamsMethod.getRepresentation(states, 25);
+
+        assertEquals(5, representation.getStates().size());
+        assertEquals(1, representation.getRepresentativesFor(de));
+        assertEquals(5, representation.getRepresentativesFor(md));
+        assertEquals(10, representation.getRepresentativesFor(pa));
+        assertEquals(7, representation.getRepresentativesFor(va));
+        assertEquals(2, representation.getRepresentativesFor(wv));
     }
 }
 

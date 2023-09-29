@@ -2,27 +2,33 @@
  * Copyright statement at the bottom of the code.
  */
 
-package sde.virginia.edu.hw1;
+package sde.virginia.edu.hw3;
+
+
+import java.util.List;
 
 /**
- * Exception for an unsupported file type passed into <code>filename</code> in the command line arguments.
+ * This exception is thrown when a given apportionment is not solvable by a particular apportionment method for
+ * a given list of states and a target number of representatives. This can be because of an unresolvable tie, for
+ * example.
  *
  * @author Will-McBurney
  */
-public class UnsupportedFileFormatException extends RuntimeException {
-
+public class UnsolvableApportionmentException extends RuntimeException {
     /**
-     * Generates an exception for an unsupported file format. See {@link Arguments#getStateSupplier()} for supported
-     * file formats.
+     * Throws an exception denoting an unsolvable apportionment situation.
      *
-     * @param unsupportedFilename the filename of the unsupported file.
+     * @param apportionmentMethod   the apportionment method used
+     * @param states                the list of states to be apportioned
+     * @param targetRepresentatives the total number of representatives to allocate to all states combined
      */
-    public UnsupportedFileFormatException(String unsupportedFilename) {
+    public UnsolvableApportionmentException(ApportionmentMethod apportionmentMethod,
+                                            List<State> states, int targetRepresentatives) {
         super(String.format("""
-                Filename: %s - This project currently only supports:
-                    .csv
-                    .xlsx
-                    .xls""", unsupportedFilename));
+                For the following inputs, a %s is impossible:
+                    target representatives: %d
+                    state list: %s
+                """, apportionmentMethod.getClass().getName(), targetRepresentatives, states));
     }
 }
 

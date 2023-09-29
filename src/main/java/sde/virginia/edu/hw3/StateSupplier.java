@@ -2,21 +2,24 @@
  * Copyright statement at the bottom of the code.
  */
 
-package sde.virginia.edu.hw1;
+package sde.virginia.edu.hw3;
+
+import java.util.List;
 
 /**
- * A RepresentationFormat describes a way to display a {@link Representation} object as a {@link String}.
+ * A StateSupplier provides a {@link List} of {@link State states} from some data source, such as a file.
  *
  * @author Will-McBurney
  */
-public interface RepresentationFormat {
+public interface StateSupplier {
     /**
-     * Generates a formatted {@link String} to display the results of an apportionment.
+     * Returns a list of states retrieved from some data source
      *
-     * @param representation the allocation of representatives to each US state
-     * @return a formatted {@link String} to display the results of an apportionment.
+     * @return a {@link List list} of {@link State} objects
+     * @see CSVStateReader#getStates()
+     * @see SpreadsheetStateReader#getStates()
      */
-    String getFormattedString(Representation representation);
+    List<State> getStates();
 }
 
 /*
