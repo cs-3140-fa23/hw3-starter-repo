@@ -27,6 +27,19 @@ class PopulationFormatTest {
     }
 
     @Test
+    void setDisplayOrder() {
+        var format = new PopulationFormat();
+        format.setDisplayOrder(DisplayOrder.DESCENDING);
+        assertEquals(DisplayOrder.DESCENDING, format.getDisplayOrder());
+    }
+
+    @Test
+    void setDisplayOrder_null_Exception() {
+        var format = new PopulationFormat();
+        assertThrows(IllegalArgumentException.class, () -> format.setDisplayOrder(null));
+    }
+
+    @Test
     void getFormattedString_ascending() {
         var representation = new Representation(new HashMap<>(
                 Map.of(new State("West Virginia", 5), 0,

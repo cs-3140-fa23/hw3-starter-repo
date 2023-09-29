@@ -11,7 +11,7 @@ import java.util.Comparator;
  * This class is used for printing a Representation in order by population (either ascending or descending)
  */
 public class PopulationFormat implements RepresentationFormat {
-    private final DisplayOrder displayOrder;
+    private DisplayOrder displayOrder;
 
     /**
      * Creates a population format in ascending order
@@ -26,7 +26,7 @@ public class PopulationFormat implements RepresentationFormat {
      *                     {@link DisplayOrder#DESCENDING descending} order.
      */
     public PopulationFormat(DisplayOrder displayOrder) {
-        this.displayOrder = displayOrder;
+        setDisplayOrder(displayOrder);
     }
 
     /**
@@ -35,6 +35,13 @@ public class PopulationFormat implements RepresentationFormat {
      */
     public DisplayOrder getDisplayOrder() {
         return displayOrder;
+    }
+
+    public void setDisplayOrder(DisplayOrder displayOrder) {
+        if (displayOrder == null) {
+            throw new IllegalArgumentException("The display order cannot be null!");
+        }
+        this.displayOrder = displayOrder;
     }
 
     /**
