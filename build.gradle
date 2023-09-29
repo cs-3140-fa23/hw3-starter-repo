@@ -9,7 +9,7 @@ jar {
     archivesBaseName = "Apportionment"
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     manifest {
-        attributes "Main-class": "sde.virginia.edu.hw1.Apportionment"
+        attributes "Main-class": "sde.virginia.edu.hw3.Main"
     }
 
     from {
