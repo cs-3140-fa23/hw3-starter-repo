@@ -1,7 +1,3 @@
-/*
- * Copyright statement at the bottom of the code.
- */
-
 package sde.virginia.edu.hw3;
 
 import org.junit.jupiter.api.Test;
@@ -9,28 +5,60 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Test class for AdamsMethod
- *
- * @author Will-McBurney
- */
-class AlphabeticalFormatTest {
+class PopulationFormatTest {
     @Test
-    void getFormattedString() {
+    void getDisplayOrder_default() {
+        var format = new PopulationFormat();
+        assertEquals(DisplayOrder.ASCENDING, format.getDisplayOrder());
+    }
+
+    @Test
+    void getDisplayOrder_ascending() {
+        var format = new PopulationFormat(DisplayOrder.ASCENDING);
+        assertEquals(DisplayOrder.ASCENDING, format.getDisplayOrder());
+    }
+
+    @Test
+    void getDisplayOrder_descending() {
+        var format = new PopulationFormat(DisplayOrder.DESCENDING);
+        assertEquals(DisplayOrder.DESCENDING, format.getDisplayOrder());
+    }
+
+    @Test
+    void getFormattedString_ascending() {
         var representation = new Representation(new HashMap<>(
                 Map.of(new State("West Virginia", 5), 0,
                         new State("Maryland", 8), 1,
                         new State("Virginia", 20), 4,
                         new State("Ohio", 15), 16)));
 
-        var format = new AlphabeticalFormat();
+        var format = new PopulationFormat(DisplayOrder.ASCENDING);
         var expected = """
                 State           |Population| Reps
+                West Virginia   |         5|    0
                 Maryland        |         8|    1
                 Ohio            |        15|   16
                 Virginia        |        20|    4
+                """;
+        assertEquals(expected, format.getFormattedString(representation));
+    }
+
+    @Test
+    void getFormattedString_descending() {
+        var representation = new Representation(new HashMap<>(
+                Map.of(new State("West Virginia", 5), 0,
+                        new State("Maryland", 8), 1,
+                        new State("Virginia", 20), 4,
+                        new State("Ohio", 15), 16)));
+
+        var format = new PopulationFormat(DisplayOrder.DESCENDING);
+        var expected = """
+                State           |Population| Reps
+                Virginia        |        20|    4
+                Ohio            |        15|   16
+                Maryland        |         8|    1
                 West Virginia   |         5|    0
                 """;
         assertEquals(expected, format.getFormattedString(representation));
@@ -38,7 +66,7 @@ class AlphabeticalFormatTest {
 }
 
 /*
- * Copyright (c) 2023. Paul "Will" McBurney <br>
+ * Copyright (c) 2023.
  *
  * This software was written as part of an education experience by Prof. Paul "Will" McBurney at the University of Virginia, for the course CS 3140, Software Development Essentials. This source code, or any derivative source code (such as the student's own work building off this source code) is subject to the CS 3140 collaboration policy which can be found here: <a href="https://cs-3140-fa23.github.io/syllabus.html#homework-collaboration-policy">https://cs-3140-fa23.github.io/syllabus.html#homework-collaboration-policy</a>
  *

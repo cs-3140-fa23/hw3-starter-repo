@@ -30,6 +30,14 @@ public class PopulationFormat implements RepresentationFormat {
     }
 
     /**
+     * Returns the display order
+     * @return Either {@link DisplayOrder#ASCENDING ascending} or {@link DisplayOrder#DESCENDING descending}
+     */
+    public DisplayOrder getDisplayOrder() {
+        return displayOrder;
+    }
+
+    /**
      * Generates table-like {@link String} of a {@link Representation} where states are sorted in order by population
      * in the order specified at construction.
      *

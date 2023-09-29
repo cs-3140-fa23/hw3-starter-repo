@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class SpreadsheetStateReaderTest {
     @Test
     void getStates_normal_xlsx() {
-        var classLoader = ArgumentsTest.class.getClassLoader();
+        var classLoader = SpreadsheetStateReaderTest.class.getClassLoader();
         var filename = Objects.requireNonNull(classLoader.getResource("excelExampleNormal.xlsx")).getFile();
         var excelStateReader = new SpreadsheetStateReader(filename);
 
@@ -38,7 +38,7 @@ class SpreadsheetStateReaderTest {
 
     @Test
     void getStates_normal_xls() {
-        var classLoader = ArgumentsTest.class.getClassLoader();
+        var classLoader = SpreadsheetStateReaderTest.class.getClassLoader();
         var filename = Objects.requireNonNull(classLoader.getResource("excelExampleNormal.xls")).getFile();
         var excelStateReader = new SpreadsheetStateReader(filename);
 
@@ -58,7 +58,7 @@ class SpreadsheetStateReaderTest {
 
     @Test
     void getStates_badLines_xlsx() {
-        var classLoader = ArgumentsTest.class.getClassLoader();
+        var classLoader = SpreadsheetStateReaderTest.class.getClassLoader();
         var filename = Objects.requireNonNull(classLoader.getResource("excelExampleBadLines.xlsx")).getFile();
         var excelStateReader = new SpreadsheetStateReader(filename);
 

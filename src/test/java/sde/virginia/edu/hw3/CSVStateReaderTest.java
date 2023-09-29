@@ -19,7 +19,7 @@ class CSVStateReaderTest {
 
     @Test
     public void getStates_mixedColumns() {
-        var classLoader = ArgumentsTest.class.getClassLoader();
+        var classLoader = CSVStateReaderTest.class.getClassLoader();
         var filename = Objects.requireNonNull(classLoader.getResource("mixedColumns.csv")).getFile();
         var csvStateReader = new CSVStateReader(filename);
 
@@ -39,7 +39,7 @@ class CSVStateReaderTest {
 
     @Test
     void getStateFromLine() {
-        var classLoader = ArgumentsTest.class.getClassLoader();
+        var classLoader = CSVStateReaderTest.class.getClassLoader();
         var filename = Objects.requireNonNull(classLoader.getResource("csvReaderSample.csv")).getFile();
         var csvStateReader = new CSVStateReader(filename);
         csvStateReader.setStateColumnIndex(0);
@@ -55,7 +55,7 @@ class CSVStateReaderTest {
 
     @Test
     void getStateFromLine_mixedColumns() {
-        var classLoader = ArgumentsTest.class.getClassLoader();
+        var classLoader = CSVStateReaderTest.class.getClassLoader();
         var filename = Objects.requireNonNull(classLoader.getResource("csvReaderSample.csv")).getFile();
         var csvStateReader = new CSVStateReader(filename);
         csvStateReader.setStateColumnIndex(1);
@@ -71,7 +71,7 @@ class CSVStateReaderTest {
 
     @Test
     void getStateFromLine_withExtraWhitespace() {
-        var classLoader = ArgumentsTest.class.getClassLoader();
+        var classLoader = CSVStateReaderTest.class.getClassLoader();
         var filename = Objects.requireNonNull(classLoader.getResource("csvReaderSample.csv")).getFile();
         var csvStateReader = new CSVStateReader(filename);
         csvStateReader.setStateColumnIndex(0);
@@ -87,7 +87,7 @@ class CSVStateReaderTest {
 
     @Test
     void getStateFromLine_noComma() {
-        var classLoader = ArgumentsTest.class.getClassLoader();
+        var classLoader = CSVStateReaderTest.class.getClassLoader();
         var filename = Objects.requireNonNull(classLoader.getResource("csvReaderSample.csv")).getFile();
         var csvStateReader = new CSVStateReader(filename);
         csvStateReader.setStateColumnIndex(0);
@@ -100,7 +100,7 @@ class CSVStateReaderTest {
 
     @Test
     void getStateFromLine_populationNotNumber() {
-        var classLoader = ArgumentsTest.class.getClassLoader();
+        var classLoader = CSVStateReaderTest.class.getClassLoader();
         var filename = Objects.requireNonNull(classLoader.getResource("csvReaderSample.csv")).getFile();
         var csvStateReader = new CSVStateReader(filename);
         csvStateReader.setStateColumnIndex(0);
@@ -113,7 +113,7 @@ class CSVStateReaderTest {
 
     @Test
     void getStateFromLine_populationNegative() {
-        var classLoader = ArgumentsTest.class.getClassLoader();
+        var classLoader = CSVStateReaderTest.class.getClassLoader();
         var filename = Objects.requireNonNull(classLoader.getResource("csvReaderSample.csv")).getFile();
         var csvStateReader = new CSVStateReader(filename);
         csvStateReader.setStateColumnIndex(0);
@@ -126,7 +126,7 @@ class CSVStateReaderTest {
 
     @Test
     void getStates() {
-        var classLoader = ArgumentsTest.class.getClassLoader();
+        var classLoader = CSVStateReaderTest.class.getClassLoader();
         var filename = Objects.requireNonNull(classLoader.getResource("csvReaderSample.csv")).getFile();
         var csvStateReader = new CSVStateReader(filename);
 
@@ -153,7 +153,7 @@ class CSVStateReaderTest {
 
     @Test
     void findTargetColumns() {
-        var classLoader = ArgumentsTest.class.getClassLoader();
+        var classLoader = CSVStateReaderTest.class.getClassLoader();
         var filename = Objects.requireNonNull(classLoader.getResource("csvReaderSample.csv")).getFile();
         var csvStateReader = new CSVStateReader(filename);
         var headerRow = "ID,State,Postal,Population,Have I Lived There";
@@ -166,7 +166,7 @@ class CSVStateReaderTest {
 
     @Test
     void findTargetColumns_exception_state() {
-        var classLoader = ArgumentsTest.class.getClassLoader();
+        var classLoader = CSVStateReaderTest.class.getClassLoader();
         var filename = Objects.requireNonNull(classLoader.getResource("csvReaderSample.csv")).getFile();
         var csvStateReader = new CSVStateReader(filename);
         var headerRow = "ID,Postal,Population,Have I Lived There";
@@ -176,7 +176,7 @@ class CSVStateReaderTest {
 
     @Test
     void findTargetColumns_exception_population() {
-        var classLoader = ArgumentsTest.class.getClassLoader();
+        var classLoader = CSVStateReaderTest.class.getClassLoader();
         var filename = Objects.requireNonNull(classLoader.getResource("csvReaderSample.csv")).getFile();
         var csvStateReader = new CSVStateReader(filename);
         var headerRow = "ID,State,Postal,Have I Lived There";
