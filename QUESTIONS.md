@@ -4,7 +4,7 @@ Answer these questions thoroughly after completing the assignment, using example
 
 ## Question 1
 
-Compare the difficulty integrating (that is, connecting new code into the existing structure) the new apportionment features (Hamilton and Huntington-Hill) to code in HW3 vs. integrating Excel support to your code in HW1 Part 2. Which change was easier? Justify your answer. Answer this question honestly! If you think Prof. McBurney's design sucks and is hard to work with, we want to know! (If members of your HW3 group was on different teams for HW1, then they should answer this question separately.)
+Compare the difficulty integrating (that is, connecting new code into the existing structure) the new apportionment method (Huntington-Hill) to code in HW3 vs. integrating Excel support to your code in HW1 Part 2. Which change was easier? Justify your answer. Answer this question honestly! If you think Prof. McBurney's design sucks and is hard to work with, we want to know! (If members of your HW3 group was on different teams for HW1, then they should answer this question separately.)
 
 ## Answer 1
 
